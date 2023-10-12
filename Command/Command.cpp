@@ -52,8 +52,9 @@ public:
 int main()
 {
 
-    ConcreteCommand1 command1(receiver, "Arg ###");
-    ConcreteCommand2 command2(receiver, "Arg $$$");
+    const string receiver("test1");
+    ConcreteCommand1 command1(receiver);
+    ConcreteCommand2 command2(receiver);
     
     MacroCommand macro;
     macro.addCommand(&command1);

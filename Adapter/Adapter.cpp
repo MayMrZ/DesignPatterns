@@ -1,3 +1,7 @@
+#include <iostream>
+
+using namespace std;
+
 //目标接口（新接口）
 class ITarget{
 public:
@@ -14,57 +18,60 @@ public:
 //遗留类型
 class OldClass: public IAdaptee{
     //....
+    void foo(int data) override { }
+    int bar() override { return 0;}
 };
 
 //对象适配器
 class Adapter: public ITarget{ //继承
 protected:
     IAdaptee* pAdaptee;//组合
-    
+
 public:
-    
+
     Adapter(IAdaptee* pAdaptee){
         this->pAdaptee=pAdaptee;
     }
-    
+
     virtual void process(){
         int data=pAdaptee->bar();
         pAdaptee->foo(data);
-        
+
     }
-    
-    
+
+
 };
 
 
 //类适配器
-class Adapter: public ITarget,
-               protected OldClass{ //多继承
-               
-               
-}
+//class Adapter: public ITarget,
+//               protected OldClass{ //多继承
+//
+//
+//}
 
 
 int main(){
     IAdaptee* pAdaptee=new OldClass();
-    
-    
+
+
     ITarget* pTarget=new Adapter(pAdaptee);
     pTarget->process();
-    
-    
+
+    cout << "hello Adapter" << endl;
+
 }
 
-
-class stack{
-    deqeue container;
-    
-};
-
-class queue{
-    deqeue container;
-    
-};
+//
+//class stack{
+//    deqeue container;
+//
+//};
+//
+//class queue{
+//    deqeue container;
+//
+//};
 
 
 
